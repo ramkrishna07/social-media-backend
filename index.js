@@ -8,6 +8,8 @@ import UserRoute from'./Routes/UserRoute.js';
 import PostRoute from './Routes/PostRoute.js';
 import UploadRoute from './Routes/UploadRoute.js';
 
+const PORT=process.env.PORT || 5000
+
 // Routes
 const app=express();
 
@@ -28,8 +30,8 @@ const connectionParams={
 }
 mongoose.connect(url,connectionParams)
     .then( () => {
-        app.listen(process.env.PORT);
-        console.log(`Connected to database at ${process.env.PORT}`);
+        app.listen(PORT);
+        console.log(`Connected to database at ${PORT}`);
     })
     .catch( (err) => {
         console.error(`Error connecting to the database. \n${err}`);
