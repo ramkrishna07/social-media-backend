@@ -8,6 +8,8 @@ import UserRoute from'./Routes/UserRoute.js';
 import PostRoute from './Routes/PostRoute.js';
 import UploadRoute from './Routes/UploadRoute.js';
 
+
+dotenv.config();
 const PORT=process.env.PORT || 5000
 
 // Routes
@@ -21,7 +23,7 @@ app.use(bodyParser.json({limit:'30mb',extended:true}));
 app.use(bodyParser.urlencoded({limit:'30mb',extended:true}));
 app.use(cors())
 
-dotenv.config();
+
 const url = process.env.MONGO_DB;
 
 const connectionParams={
@@ -33,8 +35,8 @@ mongoose.connect(url,connectionParams)
         app.listen(PORT);
         console.log(`Connected to database at ${PORT}`);
     })
-    .catch( (err) => {
-        console.error(`Error connecting to the database. \n${err}`);
+    .catch((error) => {
+        console.error(`Error connecting to the database. \n${error}`);
     })
 
     // usage of routes
