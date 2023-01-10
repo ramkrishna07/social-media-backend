@@ -24,13 +24,13 @@ app.use(bodyParser.urlencoded({limit:'30mb',extended:true}));
 app.use(cors())
 
 
-// const url = process.env.MONGO_DB;
+// const url = process.env.MONGO_URI;
 
 const connectionParams={
     useNewUrlParser: true,
     useUnifiedTopology: true
 }
-mongoose.connect("mongodb+srv://ramkrishna7:Raj732205saha@cluster0.jtkysk0.mongodb.net/SocialMedia?retryWrites=true&w=majority",connectionParams)
+mongoose.connect(process.env.MONGO_URI,connectionParams)
     .then( () => {
         app.listen(PORT);
         console.log(`Connected to database at ${PORT}`);
