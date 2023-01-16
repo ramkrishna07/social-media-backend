@@ -147,9 +147,9 @@ export const UnFollowUser=async (req,res)=>{
             // if follow already
             if(followUser.followers.includes(_id)){
                 // updating followers
-                await followUser.updateOne({$pull:{followers:_id}})
+                await followUser.deleteOne({$pull:{followers:_id}})
                 // updating following
-                await followingUser.updateOne({$pull:{following:id}})
+                await followingUser.deleteOne({$pull:{following:id}})
                 res.status(201).json("User unfollowed")
             }
             else{
