@@ -36,7 +36,7 @@ export const getPost=async(req,res)=>{
     const id =req.params.id
 
     try{
-        const post =await PostModel.findById(id)
+        const post =await PostModel.find()
         res.status(201).json(post)
     }catch(error){
         res.status(500).json(error)
@@ -146,7 +146,7 @@ export const getTimelinePosts=async(req,res)=>{
 
         res.status(201).json(currentUserPosts.concat(...followingPosts[0].followingPosts)
         .sort((a,b)=>{
-            return b.createdAt -a.createdAt; // it will show latest post on timeline
+            return new Date(b.createdAt) - new Date(a.createdAt); // it will show latest post on timeline
         })
         );
     }catch(error){
